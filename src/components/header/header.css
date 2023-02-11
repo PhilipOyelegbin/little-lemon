@@ -1,0 +1,23 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* nav {
+    width: fit-content;
+} */
+
+.nav-content {
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+}
+
+@media (min-width: 1024px) {
+    .nav-content {
+        flex-flow: row;
+        gap: 16px;
+    }
+}

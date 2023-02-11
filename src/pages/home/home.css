@@ -1,0 +1,141 @@
+.hero-section, .about-section {
+    display: flex;
+    flex-flow: column-reverse;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.hero-section p, .about-section p {
+    margin-top: 14px;
+    margin-bottom: 22px;
+}
+
+.hero-section > div > img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.specials-section, .testimonials-section {
+    padding: 20px 0;
+}
+
+.specials-section > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.specials-container, .testimonials-container {
+    display: flex;
+    gap: 22px;
+    padding: 10px 0;
+}
+
+.specials-container figcaption > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.specials {
+    box-shadow: 2px 2px 8px rgb(88, 86, 86);
+    border-radius: 16px;
+    flex: 1;
+}
+
+.specials > img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.specials figcaption {
+    padding: 12px;
+}
+
+.specials > figcaption > div > h6 {
+    color: #ffa500;
+}
+
+.testimonials-section > h2 {
+    text-align: center;
+}
+
+.testimonials {
+    box-shadow: 2px 2px 8px rgb(88, 86, 86);
+    border-radius: 16px;
+    flex: 1;
+    padding: 12px;
+}
+
+.testimonials > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px auto;
+}
+
+.testimonials > div > img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    object-fit: cover;
+    background: gray;
+}
+
+.about-section > div {
+    flex: 1;
+    position: relative;
+}
+
+.about-section > div > .image1 {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    position: absolute;
+    bottom: -5px;
+    z-index: 10;
+}
+
+.about-section > div > .image2 {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    position: absolute;
+    top: -5px;
+    right: 20%;
+}
+
+@media (min-width: 1024px) {
+    .hero-section, .about-section {
+        flex-flow: row;
+    }
+
+    .hero-section p, .about-section p {
+        width: 60%;
+    }
+
+    .hero-section > div, .about-section > div {
+        flex: 1;
+        position: relative;
+    }
+
+    .about-section > div > .image1 {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        position: absolute;
+        bottom: -5px;
+        z-index: 10;
+    }
+
+    .about-section > div > .image2 {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        position: absolute;
+        top: -5px;
+        right: 20%;
+    }
+}

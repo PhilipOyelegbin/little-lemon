@@ -1,0 +1,29 @@
+footer {
+    display: grid;
+    grid-template-columns: repeat(1, 300px);
+    grid-template-rows: 1fr;
+    grid-auto-rows: minmax(300px, auto);
+    padding: 20px 0;
+}
+
+ul {
+    list-style: none outside;
+    padding: 0;
+}
+
+li > a {
+    text-decoration: none;
+    color: #1a1919;
+}
+
+li > a:hover {
+    text-decoration: none;
+    color: #696767;
+}
+
+@media (min-width: 1024px) {
+    footer {
+        grid-template-columns: repeat(4, 25%);
+        padding: 40px 0;
+    }
+}
