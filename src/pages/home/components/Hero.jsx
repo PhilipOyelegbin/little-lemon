@@ -1,5 +1,5 @@
 import { InternalLinkBtn } from '../../../components/cta/Cta';
-import restaurant from '../../../assets/restaurant.jpg';
+import restaurant from '../../../assets/restauranfood.jpg';
 
 const Hero = () => {
   return (
@@ -7,11 +7,11 @@ const Hero = () => {
       <div>
         <h1>Little Lemon</h1>
         <h4>Chicago</h4>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus, expedita harum in hic aliquam veritatis? Deleniti quia consequuntur tempore aspernatur nulla autem labore asperiores ipsum excepturi accusantium quibusdam molestias sit, libero rerum quisquam, sunt, atque mollitia?</p>
+        <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
         <InternalLinkBtn url="/reservation" label="Reserve a Table"/>
       </div>
-      <div>
-        <img src={restaurant} alt="a view of the restaurant"/>
+      <div className='img-container'>
+        <img src={restaurant} loading="lazy" alt="a view of the restaurant"/>
       </div>
     </section>
   )

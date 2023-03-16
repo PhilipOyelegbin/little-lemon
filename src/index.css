@@ -11,10 +11,6 @@
   line-height: 1.5;
 }
 
-main {
-  padding: 0 20px;
-}
-
 h1 {
   font-size: 38px;
   font-weight: 700;
@@ -50,13 +46,11 @@ p {
   font-weight: 300;
 }
 
+img {
+  object-fit: cover;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-@media (min-width: 768px) {
-  main {
-    padding: 0 80px;
-  }
 }

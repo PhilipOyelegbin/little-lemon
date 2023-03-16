@@ -1,12 +1,18 @@
+import { Outlet, ScrollRestoration } from "react-router-dom"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
 
-const SharedLayout = ({children}) => {
+const SharedLayout = () => {
   return (
     <>
-        <Header/>
-        {children}
-        <Footer/>
+      <Header/>
+      <main>
+        <Outlet/>
+      </main>
+      <Footer/>
+      <ScrollRestoration getKey={(location) => {
+        return location.pathname
+      }}/>
     </>
   )
 }

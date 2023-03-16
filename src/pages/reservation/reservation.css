@@ -1,0 +1,63 @@
+.reservation-section {
+    padding: 20px;
+}
+
+.reservation-form {
+    display: flex;
+    flex-flow: column-reverse;
+    gap: 12px;
+}
+
+form {
+    box-shadow: 1px 1px 4px gray;
+    padding: 20px 10px;
+    border-radius: 8px;
+}
+
+fieldset {
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.form-control {
+    display: flex;
+    flex-flow: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+input[type="range"] {
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 8px;
+    width: 100%;
+    padding: 0;
+}
+
+input, select {
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .reservation-section {
+        padding: 20px 100px;
+    }
+
+    .reservation-form {
+        flex-flow: row;
+    }
+
+    form {
+        width: 50%;
+    }
+
+    .banner-image {
+        background: gray;
+        width: 50%;
+    }
+}
