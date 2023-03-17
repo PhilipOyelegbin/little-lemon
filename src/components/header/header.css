@@ -3,21 +3,35 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 20px;
+    width: 100vw;
 }
 
 .menu-btn {
     font-size: 24px;
+    border: none;
+    background: none;
+}
+
+.show-menu-btn {
+    display: block;
+    transition: cubic-bezier(0.96, -0.01, 0, 0.05);
+    transition-duration: 300ms;
+}
+
+.hide-menu-btn {
+    display: none;
 }
 
 .nav-container {
-    position: fixed;
+    position: absolute;
     top: 80px;
     bottom: 0;
     background: #ffffff;
     width: 50%;
     padding: 20px;
     right: 100%;
-    transition: cubic-bezier(0.96, -0.01, 0, 0.99) 300ms;
+    transition: cubic-bezier(0.96, -0.01, 0, 0.05);
+    transition-duration: 300ms;
     flex-flow: column;
 }
 
@@ -34,6 +48,7 @@ header {
 
 .fix-page {
     position: fixed;
+    width: 100vw;
 }
 
 @media (min-width: 768px) {
@@ -55,11 +70,13 @@ header {
 
     .fix-page {
         position: relative;
+        width: auto;
     }
 }
 
 @media (min-width: 1024px) {
     header {
         padding: 20px 100px;
+        width: auto;
     }
 }

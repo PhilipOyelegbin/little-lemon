@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHamburger } from 'react-icons/fa';
+import { GiHamburger, GiKnifeFork } from 'react-icons/gi';
 import logo from '../../assets/Logo.svg';
 import './header.css';
 
@@ -31,7 +31,10 @@ const Header = () => {
   return (
     <header>
       <img src={logo} alt="little lemon logo" />
-      <FaHamburger className="menu-btn" onClick={handleMenu} />
+      <button className="menu-btn">
+        <GiHamburger className={`${!toggleMenu ? "show-menu-btn" : "hide-menu-btn"}`} onClick={handleMenu} />
+        <GiKnifeFork className={`${toggleMenu ? "show-menu-btn" : "hide-menu-btn"}`} onClick={handleMenu} />
+      </button>
       <Navbar/>
     </header>
   )
