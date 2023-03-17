@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
 import { InternalLinkBtn } from '../../../components/cta/Cta';
 import bruchetta from '../../../assets/bruchetta.svg';
 import lemon_dessert from '../../../assets/lemon dessert.jpg';
@@ -21,7 +22,7 @@ const Specials = () => {
                     <h6>${price}</h6>
                 </div>
                 <p>{description}</p>
-                <Link to="/">Order menu</Link>
+                <Link to="/">Order a delivery <FaShoppingCart/></Link>
                 </figcaption>
             </figure>
         )
@@ -31,7 +32,7 @@ const Specials = () => {
     <section className='specials-section'>
         <div className='specials-header'>
             <h2>This weeks specials!</h2>
-            <InternalLinkBtn url="/order-online" label="Online Menu"/>
+            <InternalLinkBtn url="/menu" label="Online Menu"/>
         </div>
         <div className='specials-content'>
             {menu?.map((menu, index) => (

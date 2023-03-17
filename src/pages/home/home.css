@@ -65,11 +65,21 @@
 }
 
 .specials > figcaption > div > h6 {
-    color: #face14;
+    background: #face14;
+    padding: 8px;
+    border-radius: 50%;
 }
 
 .specials figcaption {
     padding: 12px;
+}
+
+.specials figcaption a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #495E57;
+    margin-top: 16px;
 }
 
 .testimonials-section > h2 {
@@ -105,7 +115,7 @@
     background: gray;
 }
 
-.about-section {
+.about-prev-section {
     display: flex;
     flex-flow: column-reverse;
     justify-content: space-between;
@@ -113,23 +123,32 @@
     padding: 20px 20px;
 }
 
-.about-section p {
+.about-prev-section p {
     margin-top: 14px;
     margin-bottom: 22px;
 }
 
-.about-section > div {
+.about-prev-section p > a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #495E57;
+    width: fit-content;
+    margin: 0;
+}
+
+.about-prev-section > div {
     flex: 1;
     position: relative;
 }
 
-.about-section > div > .image1 {
+.about-prev-section > div > .image1 {
     width: 100%;
     height: 300px;
     background: gray;
 }
 
-.about-section > div > .image2 {
+.about-prev-section > div > .image2 {
     display: none;
 }
 
@@ -162,7 +181,7 @@
         width: 50%;
     }
 
-    .hero-section > div, .about-section > div {
+    .hero-section > div, .about-prev-section > div {
         flex: 1;
         position: relative;
     }
@@ -181,16 +200,16 @@
         padding: 40px 0;
     }
 
-    .about-section {
+    .about-prev-section {
         padding: 40px 100px;
         flex-flow: row;
     }
 
-    .about-section p {
+    .about-prev-section p {
         width: 60%;
     }
 
-    .about-section > div > .image1 {
+    .about-prev-section > div > .image1 {
         width: 300px;
         height: 200px;
         bottom: -5px;
@@ -198,7 +217,7 @@
         position: absolute;
     }
 
-    .about-section > div > .image2 {
+    .about-prev-section > div > .image2 {
         width: 300px;
         height: 200px;
         top: -5px;
