@@ -17,13 +17,6 @@ const Reservation = () => {
     return state
   }
 
-  // const apiResponse = window.fetch("https://raw.githubusercontent.com/Meta-Front-End-Developer-PC/capstone/master/api.js")
-  // .then(resp => {return resp.PromiseResult})
-  // // .then(data => {return data.status})
-  // // .catch(err => {return err.status})
-
-  // console.log(apiResponse)
-
   useEffect(() => {
     fetch(document.getElementsByName("script").keys("src"))
   .then(resp => console.log(resp))
