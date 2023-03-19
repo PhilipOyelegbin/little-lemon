@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaExclamation } from 'react-icons/fa'
 import restaurant from '../../../assets/restaurant.jpg';
 
 const BookingForm = ({availableTimes, state, dispatch}) => {
@@ -9,6 +10,16 @@ const BookingForm = ({availableTimes, state, dispatch}) => {
     const disableBtn = (
         reservationData.full_name === "" || reservationData.email === "" || !reservationData.email.includes("@") || reservationData.phone_number === "" || reservationData.res_date === "" || reservationData.res_time === "" || reservationData.occasion === ""
     )
+
+    const errorMsg = {
+        full_name: "Required",
+        email: "Required and must be a valid email",
+        phone_number: "Required",
+        guest: "Required, must be minimum of 1 and maximum of 12",
+        res_date: "Required",
+        res_time: "Required",
+        occasion: "Required"
+    }
 
     function handleChange(e){
         const {name, value} = e.target
@@ -31,27 +42,32 @@ const BookingForm = ({availableTimes, state, dispatch}) => {
             <fieldset>
                 <legend>Contact</legend>
                 <div className="form-control">
-                    <label htmlFor="full_name">Full Name</label>
+                    <label htmlFor="full_name">Full name</label>
                     <input type="text" name="full_name" id="full_name" value={reservationData.full_name} onChange={handleChange} required />
+                    {reservationData.full_name === "" && <p className='error'><FaExclamation/>{errorMsg.full_name}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="email">Email</label>
                     <input type="email" name="email" id="email" value={reservationData.email} onChange={handleChange} required />
+                    {(reservationData.email === "" || !reservationData.email.includes("@")) && <p className='error'><FaExclamation/>{errorMsg.email}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="phone_number">Phone number</label>
                     <input type="tel" name="phone_number" id="phone_number" value={reservationData.phone_number} onChange={handleChange} required />
+                    {reservationData.phone_number === "" && <p className='error'><FaExclamation/>{errorMsg.phone_number}</p>}
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Reservation</legend>
                 <div className="form-control">
                     <label htmlFor="guest">Number of guests</label>
-                    <input type="number" name="guest" id="guest" min="0" max="12" value={reservationData.guest} onChange={handleChange} />
+                    <input type="number" name="guest" id="guest" min="1" max="12" value={reservationData.guest} onChange={handleChange} />
+                    {(reservationData.guest === "" || (1 < reservationData.guest && reservationData.guest > 12)) && <p className='error'><FaExclamation/>{errorMsg.guest}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="res_date">Date</label>
                     <input type="date" name="res_date" id="res_date" value={reservationData.res_date} onChange={handleChange} onClick={()=> dispatch({type: "date"})} required />
+                    {reservationData.res_date === "" && <p className='error'><FaExclamation/>{errorMsg.res_date}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="res_time">Time</label>
@@ -59,9 +75,10 @@ const BookingForm = ({availableTimes, state, dispatch}) => {
                         {state && state?.map((time, index)=>
                         <option key={index} value="">{time}</option>)}
                     </select>
+                    {reservationData.res_time === "" && <p className='error'><FaExclamation/>{errorMsg.res_time}</p>}
                 </div>
                 <div className="form-control">
-                    <label htmlFor="purpose">Select Occasion</label>
+                    <label htmlFor="occasion">Select occasion</label>
                     <select name="occasion" id="occasion" value={reservationData.occasion} onChange={handleChange}>
                         <option value="">Occasion</option>
                         <option value="Birthday">Birthday</option>
@@ -69,6 +86,7 @@ const BookingForm = ({availableTimes, state, dispatch}) => {
                         <option value="Anniversary">Anniversary</option>
                         <option value="Others">Others</option>
                     </select>
+                    {reservationData.occasion === "" && <p className='error'><FaExclamation/>{errorMsg.occasion}</p>}
                 </div>
             </fieldset>
             <button type="submit" disabled={disableBtn} className='btn'>Make a Reservation</button>
