@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![little-lemon-preview.png](src/assets/little-lemon-preview.png)
+### Click [here](https://mylittlelemon.vercel.app) to view the live projects.
+
 ## Available Scripts
 
 In the project directory, you can run:
