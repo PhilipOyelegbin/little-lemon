@@ -28,13 +28,11 @@ const Chart = () => {
         ]
     }
 
-    const options = []
-
   return (
     <section className="chart-section">
         <h3>We are highly rated!</h3>
         <div>
-            <Bar data={data} options={options} className="bar-chart"></Bar>
+            <Bar data={data} className="bar-chart"></Bar>
         </div>
     </section>
   )
