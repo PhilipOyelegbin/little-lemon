@@ -16,8 +16,3 @@
 .btn:hover {
     box-shadow: 2px 2px 16px #1f1e1e;
 }
-
-.btn:disabled {
-    background-color: #999;
-    box-shadow: none;
-}

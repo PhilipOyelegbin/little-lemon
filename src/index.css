@@ -50,6 +50,11 @@ img {
   object-fit: cover;
 }
 
+.loader {
+  margin: 50vh auto;
+  text-align: center;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

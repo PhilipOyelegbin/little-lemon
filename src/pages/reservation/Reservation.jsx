@@ -1,31 +1,26 @@
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
+import { fetchAPI, submitAPI } from "../../api";
 import BookingForm from "./components/BookingForm";
 import './reservation.css'
 
+const updateTimes = fetchAPI(new Date())
+
 function availableTimes(state, action) {
-  if(action.type === "date") {return state}
+  if(action.type === updateTimes) {
+    return updateTimes
+  }
   return state;
 }
 
 const Reservation = () => {
   const initializeTimes = []
-  // const initializeTimes = ["17:00", "18:00", "19:00", "20:00", "21:00"]
 
   const [state, dispatch] = useReducer(availableTimes, initializeTimes)
-
-  function updateTimes() {
-    return state
-  }
-
-  useEffect(() => {
-    fetch(document.getElementsByName("script").keys("src"))
-  .then(resp => console.log(resp))
-  }, [])
 
   return (
     <section className="reservation-section">
       <h2>Reservation</h2>
-      <BookingForm availableTimes={availableTimes} state={state} dispatch={dispatch}/>
+      <BookingForm availableTimes={availableTimes} updateTimes={updateTimes} state={state} dispatch={dispatch} submitData={submitAPI}/>
     </section>
   )
 }
