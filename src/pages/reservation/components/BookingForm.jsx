@@ -3,10 +3,13 @@ import { FaExclamation } from 'react-icons/fa'
 import restaurant from '../../../assets/restaurant.jpg';
 import Status from './Status';
 
-const BookingForm = ({updateTimes, state, dispatch, submitData}) => {
+const BookingForm = ({state, postReservationForm}) => {
     const [reservationData, setReservationData] = useState({
-        full_name: "", email: "", phone_number: "", guest: "", res_date: "", res_time: "", occasion: ""
+        full_name: "", email: "", phone_number: "", guest: "", res_date: new Date().getDate(), res_time: "", occasion: ""
     })
+
+    console.log(reservationData);
+
     const [status, setStatus] = useState(false)
 
     const disableBtn = (
@@ -30,7 +33,7 @@ const BookingForm = ({updateTimes, state, dispatch, submitData}) => {
 
     function sendReservation(e) {
         e.preventDefault()
-        submitData(reservationData)
+        postReservationForm(reservationData)
         setReservationData({
             full_name: "", email: "", phone_number: "", guest: "", res_date: "", res_time: "", occasion: ""
         })
@@ -77,21 +80,21 @@ const BookingForm = ({updateTimes, state, dispatch, submitData}) => {
                 </div>
                 <div className="form-control">
                     <label htmlFor="res_date">Date</label>
-                    <input type="date" name="res_date" id="res_date" value={reservationData.res_date} onChange={handleChange} onClick={()=> dispatch({type: updateTimes})} required />
+                    <input type="date" name="res_date" id="res_date" value={reservationData.res_date} onChange={handleChange} required />
                     {reservationData.res_date === "" && <p className='error'><FaExclamation/>{errorMsg.res_date}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="res_time">Time</label>
                     <select name="res_time" id="res_time" value={reservationData.res_time} onChange={handleChange}>
-                        {state && state?.map((time, index)=>
-                        <option key={index} value={time}>{time}</option>)}
+                        {state.length > 0 && state?.map((reservation, index)=>
+                        <option key={index} value={reservation.time}>{reservation.time}</option>)}
                     </select>
                     {reservationData.res_time === "" && <p className='error'><FaExclamation/>{errorMsg.res_time}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="occasion">Select occasion</label>
                     <select name="occasion" id="occasion" value={reservationData.occasion} onChange={handleChange}>
-                        <option value="">Occasion</option>
+                        <option value="">[Occasion]</option>
                         <option value="Birthday">Birthday</option>
                         <option value="Wedding">Wedding</option>
                         <option value="Anniversary">Anniversary</option>

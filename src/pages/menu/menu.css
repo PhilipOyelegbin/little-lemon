@@ -1,3 +1,17 @@
+.menu_hero-section {
+    background: #1f1e1e99 url("../../assets/restaurant\ chef\ B.jpg");
+    background-size: cover;
+    background-position: bottom;
+    background-blend-mode: darken;
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    color: #eeeeee;
+}
+
 .menu-section {
     display: flex;
     flex-flow: column;
@@ -7,25 +21,105 @@
     align-items: center;
 }
 
-.menu-section > img {
-    width: 90%;
-    height: 300px;
-    object-fit: fill;
-    background: #1f1e1e;
+.filter-control {
+    display: flex;
+    padding: 4px 8px;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    position: relative;
+}
+
+.filter-control > button {
+    border: none;
+    border-bottom: 1px solid #999;
+    padding: 0 4px;
+    background: none;
+    color: #495E57;
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.show-filter-list {
+    display: block;
+    background: #EEEEEE;
+    position: absolute;
+    top: 30px;
+    transition: all;
+    padding: 4px 8px;
+    width: 100%;
+}
+
+.show-filter-list > li {
+    cursor: pointer;
+}
+
+.show-filter-list > li:hover {
+    background: #495E57;
+    color: #e2dada;
+}
+
+.hide-filter-list {
+    display: none;
+}
+
+.specials-content {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    grid-template-rows: 1fr;
+    grid-auto-rows: minmax(auto);
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.specials {
+    box-shadow: 2px 2px 8px rgb(88, 86, 86);
     border-radius: 16px;
 }
 
-.menu-section > h3 {
-    color: #495E57;
+.specials > img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background: gray;
 }
+
+.specials figcaption > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.specials > figcaption > div > h6 {
+    background: #face14;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.specials figcaption {
+    padding: 12px;
+}
+
+.specials figcaption a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #495E57;
+    margin-top: 16px;
+}
+
 
 @media (min-width: 768px) {
     .menu-section {
         padding: 20px 100px;
     }
 
-    .menu-section > img {
-        width: 60%;
-        height: 600px;
+    .specials-content {
+        grid-template-columns: repeat(3, auto);
+        padding: 40px 0;
     }
 }

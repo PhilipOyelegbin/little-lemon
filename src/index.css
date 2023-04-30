@@ -55,6 +55,10 @@ img {
   text-align: center;
 }
 
+.loading-msg, .error-msg {
+  text-align: center;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

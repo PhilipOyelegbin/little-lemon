@@ -21,7 +21,6 @@ const Header = () => {
           <li onClick={handleMenu}><NavLink to="about" role="navigation">About</NavLink></li>
           <li onClick={handleMenu}><NavLink to="menu" role="navigation">Menu</NavLink></li>
           <li onClick={handleMenu}><NavLink to="reservation" role="navigation">Reservation</NavLink></li>
-          <li onClick={handleMenu}><NavLink to="login" role="navigation">Login</NavLink></li>
         </ul>
       </nav>
     )

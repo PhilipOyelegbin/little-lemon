@@ -1,16 +1,21 @@
+import { useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import { actions, initialState, menuReducer } from '../../../reducers/menuReducer';
 import { InternalLinkBtn } from '../../../components/cta/Cta';
-import bruchetta from '../../../assets/bruchetta.svg';
-import lemon_dessert from '../../../assets/lemon dessert.jpg';
-import greek_salad from '../../../assets/greek salad.jpg';
 
 const Specials = () => {
-    const menu = [
-        {cover_image: bruchetta, title: "Bruchetta", price: "13.99", description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nam itaque velit dolores quia facere delectus incidunt exercitationem odit iure"},
-        {cover_image: lemon_dessert, title: "Lemon dessert", price: "13.99", description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nam itaque velit dolores quia facere delectus incidunt exercitationem odit iure"},
-        {cover_image: greek_salad, title: "Greek Salad", price: "13.99", description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nam itaque velit dolores quia facere delectus incidunt exercitationem odit iure"}
-    ]
+    const [state, dispatch] = useReducer(menuReducer, initialState)
+
+    async function getMenu() {
+        await fetch(`${process.env.REACT_APP_API_URL}/menu`)
+          .then(resp => resp.json())
+          .then(data => dispatch({type: actions.getAllMenu, payload: data}))
+    }
+
+    useEffect(() => {
+        getMenu()
+    }, [])
 
     function MenuCard({cover_image, title, price, description}) {
         return (
@@ -34,9 +39,12 @@ const Specials = () => {
             <h2>This weeks specials!</h2>
             <InternalLinkBtn url="/menu" label="Online Menu"/>
         </div>
+
+        {!state ? <h5 className='error-msg'>Unable to load reservation, try again later!</h5> : state.length <= 0 && <h5 className='error-msg'>Menu is not available</h5>}
+
         <div className='specials-content'>
-            {menu?.map((menu, index) => (
-                <MenuCard key={index} cover_image={menu.cover_image} title={menu.title} price={menu.price} description={menu.description}/>
+            {state.length > 0 && state?.map((menu, index) => (
+                <MenuCard key={index} cover_image={menu.cover_image} title={menu.name} price={menu.price} description={menu.description}/>
             ))}
         </div>
     </section>

@@ -1,26 +1,32 @@
-import { useReducer } from "react";
-import { fetchAPI, submitAPI } from "../../api";
+import { useEffect, useReducer } from "react";
+import { actions, initialState, reservationReducer } from "../../reducers/reservationResducer";
 import BookingForm from "./components/BookingForm";
 import './reservation.css'
 
-const updateTimes = fetchAPI(new Date())
-
-function availableTimes(state, action) {
-  if(action.type === updateTimes) {
-    return updateTimes
-  }
-  return state;
-}
-
 const Reservation = () => {
-  const initializeTimes = []
+  const [state, dispatch] = useReducer(reservationReducer, initialState)
 
-  const [state, dispatch] = useReducer(availableTimes, initializeTimes)
+  async function getReservation() {
+    await fetch(`${process.env.REACT_APP_API_URL}/bookings`)
+      .then(resp => resp.json())
+      .then(data => dispatch({type: actions.getAllReservation, payload: data}))
+  }
+
+  async function postReservationForm(reservation) {
+    await fetch(`${process.env.REACT_APP_API_URL}/bookings`, reservation)
+      .then(resp => resp.json())
+      .then(data => dispatch({type: actions.postReservation, payload: data}))
+      .catch (error => console.log(error))
+  }
+
+  useEffect(() => {
+    getReservation()
+  }, [])
 
   return (
     <section className="reservation-section">
       <h2>Reservation</h2>
-      <BookingForm availableTimes={availableTimes} updateTimes={updateTimes} state={state} dispatch={dispatch} submitData={submitAPI}/>
+      <BookingForm state={state} dispatch={dispatch} postReservationForm={postReservationForm}/>
     </section>
   )
 }
