@@ -83,7 +83,7 @@ input, select {
     box-shadow: none;
 }
 
-.status {
+.success-status {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -92,6 +92,24 @@ input, select {
     border-radius: 16px;
     background: #eeeeee;
     color: #00ff00;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: inherit;
+    font-weight: 500;
+    z-index: 20;
+    transition: all ease-in-out 300ms;
+}
+
+.error-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 2px solid #ff2600;
+    border-radius: 16px;
+    background: #eeeeee;
+    color: #ff2600;
     position: fixed;
     top: 20px;
     right: 20px;
@@ -119,7 +137,7 @@ input, select {
         width: 50%;
     }
 
-    .status {
+    .success-status, .error-status {
         right: 100px;
     }
 }

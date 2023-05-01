@@ -1,28 +1,26 @@
 import { useState } from 'react';
 import { FaExclamation } from 'react-icons/fa'
+import { SuccessStatus, ErrorStatus } from './Status';
 import restaurant from '../../../assets/restaurant.jpg';
-import Status from './Status';
 
-const BookingForm = ({state, postReservationForm}) => {
+const BookingForm = ({state, postReservationForm, getFilteredDate}) => {
     const [reservationData, setReservationData] = useState({
-        full_name: "", email: "", phone_number: "", guest: "", res_date: new Date().getDate(), res_time: "", occasion: ""
+        full_name: "", email: "", phone: "", number_of_guests: "", date: "", time: "", occasion: ""
     })
 
-    console.log(reservationData);
-
-    const [status, setStatus] = useState(false)
+    const [status, setStatus] = useState({success: false, error: false})
 
     const disableBtn = (
-        reservationData.full_name === "" || reservationData.email === "" || !reservationData.email.includes("@") || reservationData.phone_number === "" || reservationData.res_date === "" || reservationData.res_time === "" || reservationData.occasion === ""
+        reservationData.full_name === "" || reservationData.email === "" || !reservationData.email.includes("@") || reservationData.phone === "" || reservationData.date === "" || reservationData.time === "" || reservationData.occasion === ""
     )
 
     const errorMsg = {
         full_name: "Required",
         email: "Required and must be a valid email",
-        phone_number: "Required",
-        guest: "Required, must be minimum of 1 and maximum of 12",
-        res_date: "Required",
-        res_time: "Required",
+        phone: "Required",
+        number_of_guests: "Required, must be minimum of 1 and maximum of 12",
+        date: "Required",
+        time: "Required",
         occasion: "Required"
     }
 
@@ -35,17 +33,29 @@ const BookingForm = ({state, postReservationForm}) => {
         e.preventDefault()
         postReservationForm(reservationData)
         setReservationData({
-            full_name: "", email: "", phone_number: "", guest: "", res_date: "", res_time: "", occasion: ""
+            full_name: "", email: "", phone: "", number_of_guests: "", date: "", time: "", occasion: ""
         })
         var sec = 10;
         var timer = setInterval(function(){
-            setStatus(true)
+            setStatus({success: true})
             sec--;
             if (sec < 0) {
-                setStatus(false)
+                setStatus({success: false})
                 clearInterval(timer);
             }
         }, 1000);
+        // if(state.reservation !== undefined) {
+        // } else {
+        //     sec = 10;
+        //     timer = setInterval(function(){
+        //         setStatus({error: true})
+        //         sec--;
+        //         if (sec < 0) {
+        //             setStatus({error: false})
+        //             clearInterval(timer);
+        //         }
+        //     }, 1000);
+        // }
     }
 
   return (
@@ -66,30 +76,30 @@ const BookingForm = ({state, postReservationForm}) => {
                     {(reservationData.email === "" || !reservationData.email.includes("@")) && <p className='error'><FaExclamation/>{errorMsg.email}</p>}
                 </div>
                 <div className="form-control">
-                    <label htmlFor="phone_number">Phone number</label>
-                    <input type="tel" name="phone_number" id="phone_number" value={reservationData.phone_number} onChange={handleChange} required />
-                    {reservationData.phone_number === "" && <p className='error'><FaExclamation/>{errorMsg.phone_number}</p>}
+                    <label htmlFor="phone">Phone number</label>
+                    <input type="tel" name="phone" id="phone" value={reservationData.phone} onChange={handleChange} required />
+                    {reservationData.phone === "" && <p className='error'><FaExclamation/>{errorMsg.phone}</p>}
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Reservation</legend>
                 <div className="form-control">
-                    <label htmlFor="guest">Number of guests</label>
-                    <input type="number" name="guest" id="guest" min="1" max="12" value={reservationData.guest} onChange={handleChange} />
-                    {(reservationData.guest === "" || (1 < reservationData.guest && reservationData.guest > 12)) && <p className='error'><FaExclamation/>{errorMsg.guest}</p>}
+                    <label htmlFor="number_of_guests">Number of guests</label>
+                    <input type="number" name="number_of_guests" id="number_of_guests" min="1" max="12" value={reservationData.number_of_guests} onChange={handleChange} />
+                    {(reservationData.number_of_guests === "" || (1 < reservationData.number_of_guests && reservationData.number_of_guests > 12)) && <p className='error'><FaExclamation/>{errorMsg.number_of_guests}</p>}
                 </div>
                 <div className="form-control">
-                    <label htmlFor="res_date">Date</label>
-                    <input type="date" name="res_date" id="res_date" value={reservationData.res_date} onChange={handleChange} required />
-                    {reservationData.res_date === "" && <p className='error'><FaExclamation/>{errorMsg.res_date}</p>}
+                    <label htmlFor="date">Date</label>
+                    <input type="date" name="date" id="date" value={reservationData.date} onChange={handleChange} onSelect={() => getFilteredDate(reservationData.date)} required />
+                    {reservationData.date === "" && <p className='error'><FaExclamation/>{errorMsg.date}</p>}
                 </div>
                 <div className="form-control">
-                    <label htmlFor="res_time">Time</label>
-                    <select name="res_time" id="res_time" value={reservationData.res_time} onChange={handleChange}>
-                        {state.length > 0 && state?.map((reservation, index)=>
-                        <option key={index} value={reservation.time}>{reservation.time}</option>)}
+                    <label htmlFor="time">Available time</label>
+                    <select name="time" id="time" value={reservationData.time} onChange={handleChange}>
+                        {state.availableTimes !== undefined && state.availableTimes?.map((availableTime, index)=>
+                        <option key={index} value={availableTime}>{availableTime}</option>)}
                     </select>
-                    {reservationData.res_time === "" && <p className='error'><FaExclamation/>{errorMsg.res_time}</p>}
+                    {reservationData.time === "" && <p className='error'><FaExclamation/>{errorMsg.time}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="occasion">Select occasion</label>
@@ -107,7 +117,8 @@ const BookingForm = ({state, postReservationForm}) => {
         </form>
         <img src={restaurant} loading="lazy" className="banner-image" alt="" />
 
-        {status && <Status/>}
+        {status.success && <SuccessStatus/>}
+        {status.error && <ErrorStatus/>}
     </section>
   )
 }

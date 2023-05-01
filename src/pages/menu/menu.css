@@ -86,6 +86,8 @@
     height: 300px;
     object-fit: cover;
     background: gray;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
 }
 
 .specials figcaption > div {
