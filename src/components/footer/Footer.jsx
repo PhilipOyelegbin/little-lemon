@@ -18,8 +18,8 @@ const Footer = () => {
       <div>
         <h4 aria-label="Footer contact heading">Contact</h4>
         <ul>
-          <li><Link to="/" role="navigation">Address</Link></li>
-          <li><a href="tel: +2348xxxxxxxxx" role="navigation">+234 8xx xxxx xxx</a></li>
+          <li>2179 Vesta Drive, Chicago Illinois</li>
+          <li><a href="tel: 773-660-4404" role="navigation">773-660-4404</a></li>
           <li><a href="mailto: info@littlelemon.com" role="navigation">info@littlelemon.com</a></li>
         </ul>
       </div>

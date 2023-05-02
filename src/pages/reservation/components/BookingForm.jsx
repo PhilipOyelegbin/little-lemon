@@ -3,12 +3,10 @@ import { FaExclamation } from 'react-icons/fa'
 import { SuccessStatus, ErrorStatus } from './Status';
 import restaurant from '../../../assets/restaurant.jpg';
 
-const BookingForm = ({state, postReservationForm, getFilteredDate}) => {
+const BookingForm = ({state, postReservationForm, getFilteredDate, status}) => {
     const [reservationData, setReservationData] = useState({
         full_name: "", email: "", phone: "", number_of_guests: "", date: "", time: "", occasion: ""
     })
-
-    const [status, setStatus] = useState({success: false, error: false})
 
     const disableBtn = (
         reservationData.full_name === "" || reservationData.email === "" || !reservationData.email.includes("@") || reservationData.phone === "" || reservationData.date === "" || reservationData.time === "" || reservationData.occasion === ""
@@ -35,27 +33,6 @@ const BookingForm = ({state, postReservationForm, getFilteredDate}) => {
         setReservationData({
             full_name: "", email: "", phone: "", number_of_guests: "", date: "", time: "", occasion: ""
         })
-        var sec = 10;
-        var timer = setInterval(function(){
-            setStatus({success: true})
-            sec--;
-            if (sec < 0) {
-                setStatus({success: false})
-                clearInterval(timer);
-            }
-        }, 1000);
-        // if(state.reservation !== undefined) {
-        // } else {
-        //     sec = 10;
-        //     timer = setInterval(function(){
-        //         setStatus({error: true})
-        //         sec--;
-        //         if (sec < 0) {
-        //             setStatus({error: false})
-        //             clearInterval(timer);
-        //         }
-        //     }, 1000);
-        // }
     }
 
   return (

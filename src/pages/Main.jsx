@@ -20,7 +20,7 @@ const Main = () => {
   );
 
   return (
-    <Suspense fallback={<h1 className="loader">Loading...</h1>}>
+    <Suspense fallback={<h1 className="loader">Please wait...</h1>}>
       <RouterProvider router={router}/>
     </Suspense>
   )
